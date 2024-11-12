@@ -16,11 +16,11 @@ export default function({ params }: Props) {
   const { id } = params;
   const products = seedProducts.filter( product => product.gender === id);
   
-  const labels: Record<Category, string> = {
-    'men': 'Men',
-    'women': 'Women',
-    'kid': 'Kids',
-    'unisex': 'All the products'
+  const labels: Record<Category, {title: string, subtitle: string}> = {
+    'men': {title: 'Men', subtitle: 'Products for Men'},
+    'women': {title: 'Women', subtitle: 'Products for Women'},
+    'kid': {title: 'Kids', subtitle: 'Products for Kids'},
+    'unisex': {title: 'All', subtitle: 'All the products'},
   }
 
   /*if ( id === 'kids' ) {
@@ -30,8 +30,8 @@ export default function({ params }: Props) {
   return (
     <>
       <Title 
-        title={`${ (labels as any)[id] }`}
-        subtitle="All the products"
+        title={`${ (labels as any)[id].title }`}
+        subtitle={`${ (labels as any)[id].subtitle }`}
         className="mb-2"
       />
 

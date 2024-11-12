@@ -14,6 +14,7 @@ interface Props {
 export default function({ params }: Props) {
   
   const { id } = params;
+  
   const products = seedProducts.filter( product => product.gender === id);
   
   const labels: Record<Category, {title: string, subtitle: string}> = {

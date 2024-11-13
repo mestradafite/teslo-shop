@@ -1,7 +1,10 @@
 import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { IoCardOutline } from "react-icons/io5";
 
 const productsInCart = [
   initialData.products[0],
@@ -9,25 +12,42 @@ const productsInCart = [
   initialData.products[2],
 ]
 
-export default function() {
+interface Props {
+  params: {
+    id: string;
+  }
+}
+
+export default function( { params }: Props ) {
+
+  const { id } = params;
+
+  //redirect()
+  
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
         <Title
-          title="Verify order"
+          title={`Order #${ id }`}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           
           {/* Cart */}
           <div className="flex flex-col mt-5">
-            <span className="text-xl">Edit cart</span>
-            <Link
-              href="/"
-              className="underline mb-5"
-            >
-              Go back to store
-            </Link>
+            <div className={
+              clsx(
+                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5", 
+                {
+                  "bg-red-500": false,
+                  "bg-green-700": true
+                }
+              )
+            }>
+              <IoCardOutline size={ 30 } />
+              {/*<span className="mx-2">Pending payment</span>*/}
+              <span className="mx-2">Payment accepted</span>
+            </div>
 
           
 
@@ -101,20 +121,19 @@ export default function() {
             </div>
 
             <div className="mt-5 mb-2 w-full">
-
-              <p className="mb-5">
-                {/* Disclamer */}
-                <span className="text-xs">
-                  Al hacer click en "Colocar orden", aceptas nuestros <a href="" className="underline">términos y condiciones</a> y <a href="" className="underline">política de privacidad</a>
-                </span>
-              </p>
-
-              <Link 
-                href="/orders/123"
-                className="flex btn-primary justify-center"
-              >
-                Checkout
-              </Link>
+              <div className={
+                clsx(
+                  "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5", 
+                  {
+                    "bg-red-500": false,
+                    "bg-green-700": true
+                  }
+                )
+              }>
+                <IoCardOutline size={ 30 } />
+                {/*<span className="mx-2">Pending payment</span>*/}
+                <span className="mx-2">Payment accepted</span>
+              </div>
             </div>
           </div>
         </div>      

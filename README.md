@@ -8,6 +8,7 @@
 3. Install dependencies ```npm install```
 4. Build databe ```docker-compose up -d```
 5. Run migrations from Prisma ```npx prisma migrate dev```
+5. Execute seed ```npm run seed```
 6. Run porject ```npm run dev```
 
 

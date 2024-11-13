@@ -25,8 +25,8 @@ enum Gender {
 }
 
 model Category {
-  id   String @id @default(uuid())
-  name String @unique
+  id      String    @id @default(uuid())
+  name    String    @unique
   Porduct Product[]
 }
 
@@ -41,8 +41,18 @@ model Product {
   tags        String[] @default([])
   gender      Gender
 
-  category Category @relation(fields: [categoryId], references: [id])
-  categoryId String
+  category     Category       @relation(fields: [categoryId], references: [id])
+  categoryId   String
+
+  ProductImage ProductImage[]
 
   @@index([gender])
+}
+
+model ProductImage {
+  id  Int    @id @default(autoincrement())
+  url String
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
 }

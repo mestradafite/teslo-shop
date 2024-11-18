@@ -13,3 +13,10 @@
 
 
 ## Run Prod
+
+
+## Tech used
+
+1. State Management - Zustand
+2. Prisma
+3. Postgresql

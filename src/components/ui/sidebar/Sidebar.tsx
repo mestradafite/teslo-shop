@@ -74,7 +74,7 @@ export const Sidebar = () => {
 
                 <SidebarItem 
                     title="Login"
-                    href="/"
+                    href="/auth/login"
                     icon={ <IoLogInOutline size={30} /> }
                 />
 

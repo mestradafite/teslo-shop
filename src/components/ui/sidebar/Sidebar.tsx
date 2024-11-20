@@ -21,6 +21,8 @@ export const Sidebar = () => {
   const closeMenu = useUIStore((state) => state.closeSideMenu);
 
   const { data: session } = useSession();
+  const isAuthenticated = !!session?.user;
+  const isAdmin = session?.user.role === 'admin';
 
   return (
     <div>
@@ -62,59 +64,68 @@ export const Sidebar = () => {
           />
         </div>
 
-        {/* Menu */}
-        <SidebarItem
-          title="Profile"
-          href="/profile"
-          icon={<IoPersonOutline size={30} />}
-          onClick={() => closeMenu()}
-        />
+        {isAuthenticated && (
+          <>
+            {/* Menu */}
+            <SidebarItem
+              title="Profile"
+              href="/profile"
+              icon={<IoPersonOutline size={30} />}
+              onClick={() => closeMenu()}
+            />
 
-        <SidebarItem
-          title="Orders"
-          href="/"
-          icon={<IoTicketOutline size={30} />}
-          onClick={() => closeMenu()}
-        />
+            <SidebarItem
+              title="Orders"
+              href="/"
+              icon={<IoTicketOutline size={30} />}
+              onClick={() => closeMenu()}
+            />
+            <button
+              className="flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={() => logout()}
+            >
+              <IoLogOutOutline size={30} />
+              <span className="ml-3 text-xl">Exit</span>
+            </button>
+          </>
+        )}
 
-        <SidebarItem
-          title="Login"
-          href="/auth/login"
-          icon={<IoLogInOutline size={30} />}
-          onClick={() => closeMenu()}
-        />
+        {!isAuthenticated && (
+          <SidebarItem
+            title="Login"
+            href="/auth/login"
+            icon={<IoLogInOutline size={30} />}
+            onClick={() => closeMenu()}
+          />
+        )}
 
-        <button
-          className="flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-          onClick={() => logout()}
-        >
-          <IoLogOutOutline size={30} />
-          <span className="ml-3 text-xl">Exit</span>
-        </button>
+        {isAdmin && (
+          <>
+            {/* Line Separator */}
+            <div className="w-full h-px bg-gray-200 my-10" />
 
-        {/* Line Separator */}
-        <div className="w-full h-px bg-gray-200 my-10" />
+            <SidebarItem
+              title="Products"
+              href="/"
+              icon={<IoShirtOutline size={30} />}
+              onClick={() => closeMenu()}
+            />
 
-        <SidebarItem
-          title="Products"
-          href="/"
-          icon={<IoShirtOutline size={30} />}
-          onClick={() => closeMenu()}
-        />
+            <SidebarItem
+              title="Orders"
+              href="/"
+              icon={<IoTicketOutline size={30} />}
+              onClick={() => closeMenu()}
+            />
 
-        <SidebarItem
-          title="Orders"
-          href="/"
-          icon={<IoTicketOutline size={30} />}
-          onClick={() => closeMenu()}
-        />
-
-        <SidebarItem
-          title="Users"
-          href="/"
-          icon={<IoPeopleOutline size={30} />}
-          onClick={() => closeMenu()}
-        />
+            <SidebarItem
+              title="Users"
+              href="/"
+              icon={<IoPeopleOutline size={30} />}
+              onClick={() => closeMenu()}
+            />
+          </>
+        )}
       </nav>
     </div>
   );

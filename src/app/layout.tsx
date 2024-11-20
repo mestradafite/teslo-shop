@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
-import { inter } from "@/config/fonts";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { inter } from '@/config/fonts';
+import './globals.css';
+import { Provider } from '@/components';
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Teslo | Shop",
-    default: "Home - Teslo | Shop"
+    template: '%s - Teslo | Shop',
+    default: 'Home - Teslo | Shop',
   },
-  description: "Virtual shop",
+  description: 'Virtual shop',
 };
 
 export default function RootLayout({
@@ -17,10 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={inter.className}
-      >
-        {children}
+      <body className={inter.className}>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

@@ -3,14 +3,24 @@
 import { authenticate } from '@/actions';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useActionState, useEffect } from 'react';
 import { IoInformationOutline } from 'react-icons/io5';
 
 export const LoginForm = () => {
-  const [errorMessage, formAction, isPending] = useActionState(
+  const [state, formAction, isPending] = useActionState(
     authenticate,
     undefined
   );
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state === 'Success') {
+      // Redirect
+      router.replace('/');
+    }
+  }, [state]);
 
   return (
     <form action={formAction} className="flex flex-col">
@@ -33,10 +43,22 @@ export const LoginForm = () => {
         aria-live="polite"
         aria-atomic="true"
       >
-        {errorMessage && (
+        {state && (
           <div className="flex flex-row mb-2">
-            <IoInformationOutline className="h-5 w-5 text-red-500" />
-            <p className="text-sm text-red-500">{errorMessage}</p>
+            <IoInformationOutline
+              className={clsx('h-5 w-5', {
+                'text-green-500': state === 'Success',
+                'text-red-500': state !== 'Success',
+              })}
+            />
+            <p
+              className={clsx('text-sm', {
+                'text-green-500': state === 'Success',
+                'text-red-500': state !== 'Success',
+              })}
+            >
+              {state}
+            </p>
           </div>
         )}
       </div>

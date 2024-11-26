@@ -1,70 +1,25 @@
-import { Title } from "@/components";
-import { initialData } from "@/seed/seed";
-import Image from "next/image";
-import Link from "next/link";
-
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-]
+import { Title } from '@/components';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ProductsInCart } from './ui/ProductsInCart';
 
 export default function CheckoutPage() {
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
-        <Title
-          title="Verify order"
-        />
+        <Title title="Verify order" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          
           {/* Cart */}
           <div className="flex flex-col mt-5">
             <span className="text-xl">Edit cart</span>
-            <Link
-              href="/"
-              className="underline mb-5"
-            >
+            <Link href="/" className="underline mb-5">
               Go back to store
             </Link>
 
-          
-
-          {/* Items */}
-          {
-            productsInCart.map( product => (
-              <div 
-                key={ product.slug }
-                className="flex mb-5"
-              >
-                <Image 
-                  src={`/products/${ product.images[0] }`}
-                  width={100}
-                  height={100}
-                  style={{
-                    width: '100px',
-                    height: '100px'
-                  }}
-                  alt={ product.title }
-                  className="mr-5 rounded"
-                />
-
-                <div>
-                  <p>{ product.title }</p>
-                  <p>${ product.price } x 3</p>
-                  <p className="font-bold">Subtotal: ${ product.price } x 3</p>
-                  <button className="underline mt-3">
-                    Remove
-                  </button>
-
-                </div>
-              </div>
-            ))
-          }
-
-        </div>
-
+            {/* Items */}
+            <ProductsInCart />
+          </div>
 
           {/* Summary */}
           <div className="bg-white rounded-xl shadow-xl p-7">
@@ -79,10 +34,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Divider */}
-            <div 
-              className="w-full h-0.5 rounded bg-gray-200 mb-10"
-            />
-
+            <div className="w-full h-0.5 rounded bg-gray-200 mb-10" />
 
             <h2 className="text-2xl mb-2 font-bold">Order Summary</h2>
 
@@ -101,15 +53,21 @@ export default function CheckoutPage() {
             </div>
 
             <div className="mt-5 mb-2 w-full">
-
               <p className="mb-5">
                 {/* Disclamer */}
                 <span className="text-xs">
-                  Al hacer click en &quotColocar orden&quot, aceptas nuestros <a href="" className="underline">términos y condiciones</a> y <a href="" className="underline">política de privacidad</a>
+                  Al hacer click en &quotColocar orden&quot, aceptas nuestros{' '}
+                  <a href="" className="underline">
+                    términos y condiciones
+                  </a>{' '}
+                  y{' '}
+                  <a href="" className="underline">
+                    política de privacidad
+                  </a>
                 </span>
               </p>
 
-              <Link 
+              <Link
                 href="/orders/123"
                 className="flex btn-primary justify-center"
               >
@@ -117,7 +75,7 @@ export default function CheckoutPage() {
               </Link>
             </div>
           </div>
-        </div>      
+        </div>
       </div>
     </div>
   );

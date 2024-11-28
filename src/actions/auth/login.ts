@@ -1,7 +1,6 @@
 'use server';
 
 import { signIn } from '@/auth.config';
-import { sleep } from '@/utils';
 import { AuthError } from 'next-auth';
 
 // ...
@@ -40,7 +39,7 @@ export const login = async (email: string, password: string) => {
   } catch (error) {
     return {
       ok: false,
-      message: 'Login error',
+      message: `Login error: ${error}`,
     };
   }
 };

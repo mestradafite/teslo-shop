@@ -6,11 +6,6 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export const ProductsInCart = () => {
-  const updateProductQuantity = useCartStore(
-    (state) => state.updateProductQuantity
-  );
-  const removeProduct = useCartStore((state) => state.removeProduct);
-
   const productsInCart = useCartStore((state) => state.cart);
   const [loaded, setLoaded] = useState(false);
 

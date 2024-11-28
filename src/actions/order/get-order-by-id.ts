@@ -51,7 +51,7 @@ export const getOrderById = async (id: string) => {
   } catch (error) {
     return {
       ok: false,
-      message: 'Order not found',
+      message: `Order not found ${error}`,
     };
   }
 };

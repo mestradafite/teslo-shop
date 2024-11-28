@@ -21,6 +21,8 @@
 
 This project is a replica of Tesla's clothing e-commerce platform, built with Next.js. The application aims to provide a smooth shopping experience with robust backend integration and state management.
 
+https://teslo-shop-mef.vercel.app/
+
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - Next.js

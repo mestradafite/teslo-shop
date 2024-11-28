@@ -76,7 +76,7 @@ export const Sidebar = () => {
 
             <SidebarItem
               title="Orders"
-              href="/"
+              href="/orders"
               icon={<IoTicketOutline size={30} />}
               onClick={() => closeMenu()}
             />
@@ -113,7 +113,7 @@ export const Sidebar = () => {
 
             <SidebarItem
               title="Orders"
-              href="/"
+              href="/orders"
               icon={<IoTicketOutline size={30} />}
               onClick={() => closeMenu()}
             />
